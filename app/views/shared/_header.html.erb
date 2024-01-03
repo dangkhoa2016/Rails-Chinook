@@ -1,0 +1,58 @@
+<% list_of_models1 = ['Album', 'Artist', 'Customer', 'Employee', 'Genre', ] %>
+<% list_of_models2 = ['Invoice', 'InvoiceLine', 'MediaType', 'Playlist', 'Track'] %>
+
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Chinook</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <%# <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Models
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class='dropdown-item' href="#">Action</a></li>
+            <li><a class='dropdown-item' href="#">Another action</a></li>
+            <li><a class='dropdown-item' href="#">Something else here</a></li>
+          </ul>
+        </li> %>
+        <li class="dropdown dropdown-cols-2">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Models
+          </a>
+          <div class="dropdown-menu">
+            <div class="flex-fill">
+              <ul class="p-0">
+                <% list_of_models1.each do |model| %>
+                <li class="">
+                  <% url = polymorphic_path([model.underscore.pluralize.to_sym]) %>
+                  <%= link_to model, url, class: "dropdown-item #{active_class(url)}" %>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+            <div class="flex-fill">
+              <ul class="p-0">
+                <% list_of_models2.each do |model| %>
+                <li class="">
+                  <% url = polymorphic_path([model.underscore.pluralize.to_sym]) %>
+                  <%= link_to model, url, class: "dropdown-item #{active_class(url)}" %>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

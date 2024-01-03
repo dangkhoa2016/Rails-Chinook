@@ -1,0 +1,68 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Listing customers</h1>
+  </div>
+  <div class="card-body p-0">
+    <div class="table-responsive mb-3">
+      <table class="table table-striped mb-0">
+        <thead>
+          <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Company</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Postal code</th>
+            <th>Phone</th>
+            <th>Fax</th>
+            <th>Email</th>
+            <th>Support rep</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @customers.each do |customer| %>
+            <tr>
+              <td><%= customer.first_name %></td>
+              <td><%= customer.last_name %></td>
+              <td><%= customer.company %></td>
+              <td><%= customer.address %></td>
+              <td><%= customer.city %></td>
+              <td><%= customer.state %></td>
+              <td><%= customer.country %></td>
+              <td><%= customer.postal_code %></td>
+              <td><%= customer.phone %></td>
+              <td><%= customer.fax %></td>
+              <td><%= customer.email %></td>
+              <td><%= customer.support_rep_id %></td>
+              <td class='action-td btn-sm'>
+                <%= link_to customer, class: "btn btn-sm btn-success" do %>
+                  <i class="bi-eye"></i> View
+                <% end %>
+                <%= link_to edit_customer_path(customer), class: "btn btn-sm btn-warning" do %>
+                  <i class="bi-pencil"></i> Edit
+                <% end %>
+                <%= link_to '#', method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-danger", remote: true do %>
+                  <i class="bi-trash"></i> Delete
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <%= 
+      paginate @customers, theme: 'bootstrap-5',
+      pagination_class: "pagination-sm flex-wrap justify-content-center",
+      nav_class: "d-flex justify-content-center"
+    %>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Customer', new_customer_path %>

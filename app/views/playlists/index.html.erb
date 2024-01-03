@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Listing playlists</h1>
+  </div>
+  <div class="card-body p-0">
+    <div class="table-responsive mb-3">
+      <table class="table table-striped mb-0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @playlists.each do |playlist| %>
+            <tr>
+              <td><%= playlist.name %></td>
+              <td class='action-td btn-sm'>
+                <%= link_to playlist, class: "btn btn-sm btn-success" do %>
+                  <i class="bi-eye"></i> View
+                <% end %>
+                <%= link_to edit_playlist_path(playlist), class: "btn btn-sm btn-warning" do %>
+                  <i class="bi-pencil"></i> Edit
+                <% end %>
+                <%= link_to '#', method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-danger", remote: true do %>
+                  <i class="bi-trash"></i> Delete
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <%= 
+      paginate @playlists, theme: 'bootstrap-5',
+      pagination_class: "pagination-sm flex-wrap justify-content-center",
+      nav_class: "d-flex justify-content-center"
+    %>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Playlist', new_playlist_path %>

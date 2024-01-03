@@ -1,0 +1,72 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Listing employees</h1>
+  </div>
+  <div class="card-body p-0">
+    <div class="table-responsive mb-3">
+      <table class="table table-striped mb-0">
+        <thead>
+          <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Title</th>
+            <th>Reports to</th>
+            <th>Birth date</th>
+            <th>Hire date</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Postal code</th>
+            <th>Phone</th>
+            <th>Fax</th>
+            <th>Email</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @employees.each do |employee| %>
+            <tr>
+              <td><%= employee.first_name %></td>
+              <td><%= employee.last_name %></td>
+              <td><%= employee.title %></td>
+              <td><%= employee.reports_to %></td>
+              <td><%= employee.birth_date %></td>
+              <td><%= employee.hire_date %></td>
+              <td><%= employee.address %></td>
+              <td><%= employee.city %></td>
+              <td><%= employee.state %></td>
+              <td><%= employee.country %></td>
+              <td><%= employee.postal_code %></td>
+              <td><%= employee.phone %></td>
+              <td><%= employee.fax %></td>
+              <td><%= employee.email %></td>
+              <td class='action-td btn-sm'>
+                <%= link_to employee, class: "btn btn-sm btn-success" do %>
+                  <i class="bi-eye"></i> View
+                <% end %>
+                <%= link_to edit_employee_path(employee), class: "btn btn-sm btn-warning" do %>
+                  <i class="bi-pencil"></i> Edit
+                <% end %>
+                <%= link_to '#', method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-danger", remote: true do %>
+                  <i class="bi-trash"></i> Delete
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <%= 
+      paginate @employees, theme: 'bootstrap-5',
+      pagination_class: "pagination-sm flex-wrap justify-content-center",
+      nav_class: "d-flex justify-content-center"
+    %>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Employee', new_employee_path %>

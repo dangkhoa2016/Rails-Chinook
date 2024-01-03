@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Listing albums</h1>
+  </div>
+  <div class="card-body p-0">
+    <div class="table-responsive mb-3">
+      <table class="table table-striped mb-0">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @albums.each do |album| %>
+            <tr>
+              <td><%= album.title %></td>
+              <td><%= album.artist_id %></td>
+              <td class='action-td btn-sm'>
+                <%= link_to album, class: "btn btn-sm btn-success" do %>
+                  <i class="bi-eye"></i> View
+                <% end %>
+                <%= link_to edit_album_path(album), class: "btn btn-sm btn-warning" do %>
+                  <i class="bi-pencil"></i> Edit
+                <% end %>
+                <%= link_to '#', method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-danger", remote: true do %>
+                  <i class="bi-trash"></i> Delete
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <%= 
+      paginate @albums, theme: 'bootstrap-5',
+      pagination_class: "pagination-sm flex-wrap justify-content-center",
+      nav_class: "d-flex justify-content-center"
+    %>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Album', new_album_path %>

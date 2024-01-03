@@ -1,0 +1,29 @@
+<h1>Listing playlists_tracks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Playlist</th>
+      <th>Track</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @playlists_tracks.each do |playlists_track| %>
+      <tr>
+        <td><%= playlists_track.playlist_id %></td>
+        <td><%= playlists_track.track_id %></td>
+        <td><%= link_to 'Show', playlists_track %></td>
+        <td><%= link_to 'Edit', edit_playlists_track_path(playlists_track) %></td>
+        <td><%= link_to 'Destroy', playlists_track, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Playlists track', new_playlists_track_path %>

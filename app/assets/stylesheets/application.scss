@@ -1,0 +1,128 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+.dropdown-cols-2 {
+  .dropdown-menu {
+    ul {
+      margin: 0;  
+      padding: 0; 
+    }
+    li {
+      list-style: none;
+    }
+  }
+
+  .dropdown-menu[data-bs-popper].show {
+    display: flex;
+  }
+}
+
+
+// spinner
+@keyframes spin3D {
+  from {
+    transform: rotate3d(.5,.5,.5, 360deg);
+  }
+  to{
+    transform: rotate3d(0deg);
+  }
+}
+
+// loading css
+.spinner-box {
+  position: absolute;
+  left: 50%;
+  margin-left: -150px;
+  z-index: 111;
+  top: 50%;
+  margin-top: -150px;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .leo {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
+  .blue-orbit {
+    width: 165px;
+    height: 165px;
+    border: 1px solid #2196F3;
+    -webkit-animation: spin3D 3s linear .2s infinite; /* Safari and Chrome */
+    -moz-animation: spin3D 3s linear .2s infinite; /* Firefox */
+    -o-animation: spin3D 3s linear .2s infinite; /* Opera */
+    -ms-animation: spin3D 3s linear .2s infinite; /* Internet Explorer */
+    animation: spin3D 3s linear .2s infinite; /* Standard syntax */
+  }
+
+  .green-orbit {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #4CAF50;
+    -webkit-animation: spin3D 2s linear 0s infinite; /* Safari and Chrome */
+    -moz-animation: spin3D 2s linear 0s infinite; /* Firefox */
+    -o-animation: spin3D 2s linear 0s infinite; /* Opera */
+    -ms-animation: spin3D 2s linear 0s infinite; /* Internet Explorer */
+    animation: spin3D 2s linear 0s infinite; /* Standard syntax */
+  }
+
+  .red-orbit {
+    width: 90px;
+    height: 90px;
+    border: 1px solid #F44336;
+    -webkit-animation: spin3D 1s linear 0s infinite; /* Safari and Chrome */
+    -moz-animation: spin3D 1s linear 0s infinite; /* Firefox */
+    -o-animation: spin3D 1s linear 0s infinite; /* Opera */
+    -ms-animation: spin3D 1s linear 0s infinite; /* Internet Explorer */
+    animation: spin3D 1s linear 0s infinite; /* Standard syntax */
+  }
+
+  .brown-orbit {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #795548;
+    -webkit-animation: spin3D 10s linear 0s infinite; /* Safari and Chrome */
+    -moz-animation: spin3D 10s linear 0s infinite; /* Firefox */
+    -o-animation: spin3D 10s linear 0s infinite; /* Opera */
+    -ms-animation: spin3D 10s linear 0s infinite; /* Internet Explorer */
+    animation: spin3D 10s linear 0s infinite; /* Standard syntax */
+  }
+
+
+  .w1 {
+    transform: rotate3D(1, 1, 1, 90deg);
+  }
+
+  .w2 {
+    transform: rotate3D(1, 2, .5, 90deg);
+  }
+
+  .w3 {
+    transform: rotate3D(.5, 1, 2, 90deg);
+  }
+}
+
+.action-td {
+  width: 1%;
+  white-space: nowrap;
+}

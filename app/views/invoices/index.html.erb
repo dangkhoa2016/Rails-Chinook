@@ -1,0 +1,60 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Listing invoices</h1>
+  </div>
+  <div class="card-body p-0">
+    <div class="table-responsive mb-3">
+      <table class="table table-striped mb-0">
+        <thead>
+          <tr>
+            <th>Customer</th>
+            <th>Invoice date</th>
+            <th>Billing address</th>
+            <th>Billing city</th>
+            <th>Billing state</th>
+            <th>Billing country</th>
+            <th>Billing postal code</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @invoices.each do |invoice| %>
+            <tr>
+              <td><%= invoice.customer_id %></td>
+              <td><%= invoice.invoice_date %></td>
+              <td><%= invoice.billing_address %></td>
+              <td><%= invoice.billing_city %></td>
+              <td><%= invoice.billing_state %></td>
+              <td><%= invoice.billing_country %></td>
+              <td><%= invoice.billing_postal_code %></td>
+              <td><%= invoice.total %></td>
+              <td class='action-td btn-sm'>
+                <%= link_to invoice, class: "btn btn-sm btn-success" do %>
+                  <i class="bi-eye"></i> View
+                <% end %>
+                <%= link_to edit_invoice_path(invoice), class: "btn btn-sm btn-warning" do %>
+                  <i class="bi-pencil"></i> Edit
+                <% end %>
+                <%= link_to '#', method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-danger", remote: true do %>
+                  <i class="bi-trash"></i> Delete
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <%= 
+      paginate @invoices, theme: 'bootstrap-5',
+      pagination_class: "pagination-sm flex-wrap justify-content-center",
+      nav_class: "d-flex justify-content-center"
+    %>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Invoice', new_invoice_path %>

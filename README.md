@@ -1,63 +1,64 @@
 # README
+  - setup database: `rails db:drop db:create db:migrate db:seed`
+
 
 ## Questions
 
-Maintenant que ta BDD est prête, tu vas répondre aux questions ci-dessous :
+Now that your database is ready, you will answer the questions below:
 
-## Niveau facile
+## Easy level
 
-* Quel est le nombre total d'objets Album contenus dans la base (sans regarder les id bien sûr) ?
+* What is the total number of Album objects contained in the database (without looking at the IDs of table) ?
 
 Album.count
 
-* Qui est l'auteur de la chanson "White Room" ?
+* Who is the author of the song "White Room" ?
 
-rack.where(title:"White Room")
+Track.where(title: "White Room")
 
-* Quelle chanson dure exactement 188133 milliseconds ?
+* Which song lasts exactly 188133 milliseconds ?
 
-Track.where(Duration:188133)
+Track.where(duration: 188133)
 
-* Quel groupe a sorti l'album "Use Your Illusion II" ?
+* Which band released the album "Use Your Illusion II"?
 
-Album.find_by(Title:"Use Your Illusion II")
-artiste.artist
+Album.find_by(title: "Use Your Illusion II").artist
 
-## Niveau Moyen
+## Average level
 
-* Combien y a t'il d'albums dont le titre contient "Great" ? (indice)
+* How many albums are there with “Great” in the title? (hint)
 
 Album.where("title LIKE ?", "%Great%").count
 
-* Supprime tous les albums dont le nom contient "music".
+* Deletes all albums with "music" in the name.
 
 Album.where("title LIKE ?", "%Great%").destroy_all
 
-* Combien y a t'il d'albums écrits par AC/DC ?
+* How many albums are there written by AC/DC?
 
-Album.where(artist:"AC/DC").count
+Album.where(artist: "AC/DC").count
 
-* Combien de chanson durent exactement 158589 millisecondes ?
+* How many songs are exactly 158589 milliseconds long?
 
 Track.where(duration: 158589).count
 
-## Niveau Difficile
+## Difficult Level
 
-* puts en console tous les titres de AC/DC.
+* puts all AC/DC titles on console.
 
 acdc_tracks = Track.where(artist: "AC/DC")
 acdc_tracks.each do |track|
   puts track.title
 end
 
-* puts en console tous les titres de l'album "Let There Be Rock".
+* puts into console all the titles of the album "Let There Be Rock".
 
 ltbr = Track.where(album: "Let There Be Rock")
 ltbr.each do | track |
   puts track.title
 end
 
-* Calcule le prix total de cet album ainsi que sa durée totale.
+* Calculate the total price of this album as well as its total duration.
 price = 0
 duration = 0
 ltbr = Track.where(album: "Let There Be Rock")
@@ -70,10 +71,10 @@ end
 puts "Price: $#{price.round(1)}"
 puts "Duration: #{duration} ms"
 
-* Calcule le coût de l'intégralité de la discographie de "Deep Purple".
+* Calculates the cost of the entire "Deep Purple" discography.
 
 price = 0
-all_tracks = Track.where(artist:"Deep Purple")
+all_tracks = Track.where(artist: "Deep Purple")
 
 all_tracks.each do | track |
   price += track.price
@@ -81,9 +82,9 @@ end
 
 puts "Price: $#{price.round(1)}"
 
-* Modifie (via une boucle) tous les titres de "Eric Clapton" afin qu'ils soient affichés avec "Britney Spears" en artist.
+* Modifies (via a loop) all "Eric Clapton" titles so that they are displayed with "Britney Spears" as artist.
 
-ec_tracks = Track.where(artist:"Eric Clapton")
+ec_tracks = Track.where(artist: "Eric Clapton")
 ec_tracks.each do | track |
   track.artist = "Britney Spears"
   end

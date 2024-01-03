@@ -1,6 +1,23 @@
-Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+Chinook::Application.routes.draw do
+  resources :tracks
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :playlists_tracks
+
+  resources :playlists
+
+  resources :media_types
+
+  resources :invoice_lines
+
+  resources :invoices
+
+  resources :genres
+
+  resources :employees
+
+  resources :customers
+
+  resources :artists
+
+  resources :albums
 end

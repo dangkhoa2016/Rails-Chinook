@@ -1,0 +1,60 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Listing tracks</h1>
+  </div>
+  <div class="card-body p-0">
+    <div class="table-responsive mb-3">
+      <table class="table table-striped mb-0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Album</th>
+            <th>Media type</th>
+            <th>Genre</th>
+            <th>Composer</th>
+            <th>Milliseconds</th>
+            <th>Bytes</th>
+            <th>Unit price</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @tracks.each do |track| %>
+            <tr>
+              <td><%= track.name %></td>
+              <td><%= track.album_id %></td>
+              <td><%= track.media_type_id %></td>
+              <td><%= track.genre_id %></td>
+              <td><%= track.composer %></td>
+              <td><%= track.milliseconds %></td>
+              <td><%= track.bytes %></td>
+              <td><%= track.unit_price %></td>
+              <td class='action-td btn-sm'>
+                <%= link_to track, class: "btn btn-sm btn-success" do %>
+                  <i class="bi-eye"></i> View
+                <% end %>
+                <%= link_to edit_track_path(track), class: "btn btn-sm btn-warning" do %>
+                  <i class="bi-pencil"></i> Edit
+                <% end %>
+                <%= link_to '#', method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-danger", remote: true do %>
+                  <i class="bi-trash"></i> Delete
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <%= 
+      paginate @tracks, theme: 'bootstrap-5',
+      pagination_class: "pagination-sm flex-wrap justify-content-center",
+      nav_class: "d-flex justify-content-center"
+    %>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Track', new_track_path %>

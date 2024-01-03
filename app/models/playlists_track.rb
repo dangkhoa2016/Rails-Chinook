@@ -1,0 +1,2 @@
+class PlaylistsTrack < ApplicationRecord
+end
