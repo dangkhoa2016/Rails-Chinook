@@ -33,9 +33,11 @@ class AlbumsController < ApplicationController
       if @album.save
         format.html { redirect_to @album, notice: 'Album was successfully created.' }
         format.json { render action: 'show', status: :created, location: @album }
+        format.turbo_stream
       else
         format.html { render action: 'new' }
         format.json { render json: @album.errors, status: :unprocessable_entity }
+        format.turbo_stream { render action: 'new' }
       end
     end
   end

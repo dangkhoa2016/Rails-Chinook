@@ -26,6 +26,19 @@
     <div class="container-fluid mt-4">
     <%= yield %>
     </div>
+
+    <div
+      class="modal"
+      tabindex="-1"
+      data-controller="modal"
+      data-action="turbo:frame-load->modal#open turbo:submit-end->modal#close"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <%= turbo_frame_tag "modal", src: '' %>
+        </div>
+      </div>
+    </div>
     
     <%= render "shared/footer" %>
   </body>

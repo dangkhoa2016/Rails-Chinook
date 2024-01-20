@@ -1,5 +1,12 @@
-<h1>New album</h1>
 
-<%= render 'form' %>
+<%= turbo_frame_tag "modal" do %>
+  <h1 class="h3 modal-header">
+    New album
+  </h1>
+
+  <div class="modal-body">
+    <%= render "form", item: @item %>
+  </div>
+<% end %>
 
 <%= link_to 'Back', albums_path %>
